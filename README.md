@@ -12,30 +12,18 @@
 ![image](https://github.com/user-attachments/assets/7ba24803-d0c7-4477-b5b9-e4c33d686721)
 
 花卉數據集有五個類
-num_classes = metadata.features['label'].num_classes
-print(num_classes)
+![image](https://github.com/user-attachments/assets/674c11e0-331c-4b2c-be0d-40ed3f312567)
 
 我們從數據集中檢索一個影像，然後使用它來演示資料增強。
-get_label_name = metadata.features['label'].int2str
+![image](https://github.com/user-attachments/assets/b0282377-71a3-4e81-a931-0b628b0b8506)
 
-image, label = next(iter(train_ds))
-_ = plt.imshow(image)
-_ = plt.title(get_label_name(label))
 ![image](https://github.com/user-attachments/assets/48bc4ce8-5a5f-4729-8910-f85250c9b1f0)
 
 使用Keras 預處理層
 調整大小和重新縮放
 使用Keras 預處理圖層將影像大小調整為一致的形狀（使用tf.keras.layers.Resizing），並重新調整像素值（使用tf.keras.layers.Rescaling）。
-
-IMG_SIZE = 180
-
-resize_and_rescale = tf.keras.Sequential([
-  layers.Resizing(IMG_SIZE, IMG_SIZE),
-  layers.Rescaling(1./255)
-])
-
+![image](https://github.com/user-attachments/assets/0178673b-ba19-4bac-b6bc-d80f901bcef7)
 注意：上面的重新縮放圖層將像素值標準化到[0,1]範圍。如果想要[-1,1]，可以寫tf.keras.layers.Rescaling(1./127.5, offset=-1)。
-
 可以看到將這些圖層應用於影像的結果。
 ![image](https://github.com/user-attachments/assets/74b45423-2da5-4254-865b-621302b60706)
 驗證像素是否在[0, 1]範圍內：
